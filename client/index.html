@@ -10,11 +10,22 @@
     <div id="app">{{ message }}</div>
 
     <div id="the-list">
-      <ol>
-        <li v-for="todo in todos">{{ todo.name }}</li>
-      </ol>
-    </div>
+      <div v-for="todo in todos">
+        <!-- Is Editing -->
+        <div id="the-editing-list" v-if="todo.isEditing">
+          <input type="text" v-model="todo.name" />
+          <button v-on:click="() => editTask(todo)">save</button>
+          <button v-on:click="() => deleteTask(todo.id)">delete</button>
+        </div>
 
+        <!-- Not Editing -->
+        <div id="the-nonEdit-list" v-else>
+          <input type="checkbox" v-model="todo.completed" /> {{ todo.name }}
+          <button v-on:click="() => toggleIsEditing(todo)">edit</button>
+          <button v-on:click="() => deleteTask(todo.id)">delete</button>
+        </div>
+      </div>
+    </div>
 
   </body>
   <!-- development version, includes helpful console warnings -->
