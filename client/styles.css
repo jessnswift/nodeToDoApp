@@ -1,0 +1,29 @@
+html, body {
+	background:#f7f1f1;
+	font-size:1.1rem;
+	font-family:'Quicksand', sans-serif;
+	height:100%;
+}
+
+#the-list {
+    margin:4rem auto;
+    padding:2rem 4rem 4rem;
+    max-width:400px;
+    background:#693;
+    color:#FFF;
+    box-shadow:-40px -40px 0px 0px rgba(100,100,100,.1);
+}
+
+#editing-list, #nonediting-list {
+    display:block;
+	font-size:0.8rem;
+	margin-bottom:0.7rem;
+	margin-left:3px;
+    margin-top:0.2rem;
+}
+
+#nonediting-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
