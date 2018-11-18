@@ -10,23 +10,23 @@
     <h1>Welcome to Tasks</h1>
 
     <div id="the-list">
-      <div v-for="todo in todos">
+      <div v-for="task in tasks">
         <!-- Is Editing -->
-        <div id="the-editing-list" v-if="todo.isEditing">
-          <input type="text" v-model="todo.name" />
-          <button v-on:click="() => editTask(todo)">save</button>
-          <button v-on:click="() => deleteTask(todo.id)">delete</button>
+        <div id="the-editing-list" v-if="task.isEditing">
+          <input type="text" v-model="task.name" />
+          <button v-on:click="() => editTask(task)">save</button>
+          <button v-on:click="() => deleteTask(task.id)">delete</button>
         </div>
 
         <!-- Not Editing -->
         <div id="the-nonEdit-list" v-else>
-          <input v-on:change="() => editTask(todo)" type="checkbox" v-model="todo.completed" /> {{ todo.name }}
-          <button v-on:click="() => toggleIsEditing(todo)">edit</button>
-          <button v-on:click="() => deleteTask(todo.id)">delete</button>
+          <input v-on:change="() => editTask(task)" type="checkbox" v-model="task.completed" /> {{ task.name }}
+          <button v-on:click="() => toggleIsEditing(task)">edit</button>
+          <button v-on:click="() => deleteTask(task.id)">delete</button>
         </div>
       </div>
       <div>
-          <input type="text" v-model="newTodoText">
+          <input type="text" v-model="newTasksText">
           <button v-on:click="createNewTask">Add Task</button>
       </div>
     </div>

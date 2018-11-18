@@ -2,34 +2,33 @@
 var theList = new Vue({
   el: "#the-list",
   data: {
-    todos: [],
+    tasks: [],
     isEditing: false,
-    newTodoText: ''
+    newTasksText: ''
   },
   methods: {
-    toggleIsEditing: function (todo) {
-        if (todo.isEditing) {
-            Vue.set(todo, 'isEditing', false)
+    toggleIsEditing: function (task) {
+        if (task.isEditing) {
+            Vue.set(task, 'isEditing', false)
         } else {
-            Vue.set(todo, 'isEditing', true)
+            Vue.set(task, 'isEditing', true)
         }
     },
     theTasks: function() {
-      console.log(this.todos);
     },
-    fetchTask: function() {
+    fetchTasks: function() {
       fetch(`http://localhost:3000/api/tasks`)
         .then(r => r.json())
         .then(r => {
             console.log(r)
-          this.todos = r;
+          this.tasks = r;
         });
     },
     deleteTask: function(id) {
       fetch(`http://localhost:3000/api/tasks/${id}`, {
         method: "DELETE",
       }).then(() => {
-          this.fetchTask();
+          this.fetchTasks();
       });
     },
     editTask: function(task) {
@@ -40,7 +39,7 @@ var theList = new Vue({
           },
           body: JSON.stringify(task)
       }).then(() => {
-          this.fetchTask();
+          this.fetchTasks();
       });
     },
     createNewTask: function() {
@@ -49,11 +48,11 @@ var theList = new Vue({
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({name: this.newTodoText, completed: false})
-      }).then(this.fetchTask);
+        body: JSON.stringify({name: this.newTasksText, completed: false})
+      }).then(this.fetchTasks);
     }
   },
   mounted() {
-    this.fetchTask();
+    this.fetchTasks();
   }
 });
