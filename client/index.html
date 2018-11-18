@@ -7,7 +7,7 @@
     <title>Tasks</title>
   </head>
   <body>
-    <div id="app">{{ message }}</div>
+    <h1>Welcome to Tasks</h1>
 
     <div id="the-list">
       <div v-for="todo in todos">
@@ -20,12 +20,17 @@
 
         <!-- Not Editing -->
         <div id="the-nonEdit-list" v-else>
-          <input type="checkbox" v-model="todo.completed" /> {{ todo.name }}
+          <input v-on:change="() => editTask(todo)" type="checkbox" v-model="todo.completed" /> {{ todo.name }}
           <button v-on:click="() => toggleIsEditing(todo)">edit</button>
           <button v-on:click="() => deleteTask(todo.id)">delete</button>
         </div>
       </div>
+      <div>
+          <input type="text" v-model="newTodoText">
+          <button v-on:click="createNewTask">Add Task</button>
+      </div>
     </div>
+
 
   </body>
   <!-- development version, includes helpful console warnings -->

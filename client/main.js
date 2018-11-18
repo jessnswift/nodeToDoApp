@@ -1,15 +1,10 @@
-var app = new Vue({
-  el: "#app",
-  data: {
-    message: "Welcome to Tasks!"
-  }
-});
 
 var theList = new Vue({
   el: "#the-list",
   data: {
     todos: [],
-    isEditing: false
+    isEditing: false,
+    newTodoText: ''
   },
   methods: {
     toggleIsEditing: function (todo) {
@@ -43,9 +38,7 @@ var theList = new Vue({
         headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            name: task,
-        })
+          body: JSON.stringify(task)
       }).then(() => {
           this.fetchTask();
       });
@@ -55,8 +48,9 @@ var theList = new Vue({
         method: "POST",
         headers: {
           "Content-Type": "application/json"
-        }
-      }).then(r => r.json());
+        },
+        body: JSON.stringify({name: this.newTodoText, completed: false})
+      }).then(this.fetchTask);
     }
   },
   mounted() {
