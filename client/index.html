@@ -8,12 +8,12 @@
     <title>Tasks</title>
   </head>
   <body>
-    <div id="the-list">
+    <div id="task-list">
       <h1>Welcome to Tasks</h1>
       <div v-for="task in tasks">
         <!-- Is Editing -->
-        <div id="editing-list" v-if="task.isEditing">
-          <input type="text" v-model="task.name" />
+        <div class="task-item-container" v-if="task.isEditing">
+          <input class="task-input" type="text" v-model="task.name" />
           <div class="btn-container">
             <button class="btn" v-on:click="() => editTask(task)">save</button>
             <button class="btn" v-on:click="() => deleteTask(task.id)">delete</button>
@@ -21,9 +21,9 @@
         </div>
 
         <!-- Not Editing -->
-        <div id="nonediting-list" v-else>
+        <div class="task-item-container" v-else>
           <div class="btn-container">
-            <input class="checkbox"
+            <input class="checkbox task-input"
               v-on:change="() => editTask(task)"
               type="checkbox"
               v-model="task.completed"
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div>
-        <input type="text" v-model="newTaskText" />
+        <input class="task-input" type="text" v-model="newTaskText" />
         <button class="btn" v-on:click="createNewTask">Add Task</button>
       </div>
     </div>

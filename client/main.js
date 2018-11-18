@@ -1,6 +1,6 @@
 
 var theList = new Vue({
-  el: "#the-list",
+  el: "#task-list",
   data: {
     tasks: [],
     isEditing: false,
