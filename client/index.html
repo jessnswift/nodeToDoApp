@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" type"text/css" href="styles.css">
     <title>Tasks</title>
@@ -15,15 +15,15 @@
         <div id="editing-list" v-if="task.isEditing">
           <input type="text" v-model="task.name" />
           <div class="btn-container">
-            <button v-on:click="() => editTask(task)">save</button>
-            <button v-on:click="() => deleteTask(task.id)">delete</button>
+            <button class="btn" v-on:click="() => editTask(task)">save</button>
+            <button class="btn" v-on:click="() => deleteTask(task.id)">delete</button>
           </div>
         </div>
 
         <!-- Not Editing -->
         <div id="nonediting-list" v-else>
           <div class="btn-container">
-            <input
+            <input class="checkbox"
               v-on:change="() => editTask(task)"
               type="checkbox"
               v-model="task.completed"
@@ -31,14 +31,14 @@
             {{ task.name }}
           </div>
           <div class="btn-container">
-            <button v-on:click="() => toggleIsEditing(task)">edit</button>
-            <button v-on:click="() => deleteTask(task.id)">delete</button>
+            <button class="btn" v-on:click="() => toggleIsEditing(task)">edit</button>
+            <button class="btn" v-on:click="() => deleteTask(task.id)">delete</button>
           </div>
         </div>
       </div>
       <div>
-        <input type="text" v-model="newTasksText" />
-        <button v-on:click="createNewTask">Add Task</button>
+        <input type="text" v-model="newTaskText" />
+        <button class="btn" v-on:click="createNewTask">Add Task</button>
       </div>
     </div>
   </body>

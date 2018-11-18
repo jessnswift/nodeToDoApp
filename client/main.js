@@ -4,7 +4,7 @@ var theList = new Vue({
   data: {
     tasks: [],
     isEditing: false,
-    newTasksText: ''
+    newTaskText: ''
   },
   methods: {
     toggleIsEditing: function (task) {
@@ -20,7 +20,7 @@ var theList = new Vue({
       fetch(`http://localhost:3000/api/tasks`)
         .then(r => r.json())
         .then(r => {
-            console.log(r)
+          console.log(r)
           this.tasks = r;
         });
     },
@@ -48,8 +48,11 @@ var theList = new Vue({
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({name: this.newTasksText, completed: false})
-      }).then(this.fetchTasks);
+        body: JSON.stringify({name: this.newTaskText, completed: false})
+      }).then(() => {
+        this.newTaskText = '';
+        this.fetchTasks();
+      });
     }
   },
   mounted() {
